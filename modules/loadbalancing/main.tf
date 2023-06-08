@@ -13,6 +13,9 @@ resource "aws_lb" "web_lb" {
 }
 
 # Create Target group
+# Create a target group, which is used in request routing.
+# The default rule for your listener routes requests to the registered targets in this target group.
+# The load balancer checks the health of targets in this target group using the health check settings defined for the target group.
 resource "aws_lb_target_group" "web_lb_tg" {
   name     = "web-LB-TG-${substr(uuid(), 0, 3)}"
   protocol = "HTTP"
