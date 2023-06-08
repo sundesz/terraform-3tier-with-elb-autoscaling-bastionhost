@@ -1,4 +1,4 @@
 variable "public_subnets" {}
 variable "vpc_id" {}
-variable "web_sg" {}
-variable "app_sg" {}
+variable "alb_web_sg" {}
+variable "alb_app_sg" {}

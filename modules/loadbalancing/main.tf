@@ -6,7 +6,7 @@ resource "aws_lb" "web_lb" {
   name               = "web-lb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [var.web_sg]
+  security_groups    = [var.alb_web_sg]
   subnets            = var.public_subnets
 
   enable_deletion_protection = false
@@ -51,7 +51,7 @@ resource "aws_lb" "app_lb" {
   name               = "app-lb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [var.app_sg]
+  security_groups    = [var.alb_app_sg]
   subnets            = var.public_subnets
 
   enable_deletion_protection = false

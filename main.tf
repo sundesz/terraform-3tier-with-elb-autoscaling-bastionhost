@@ -37,8 +37,8 @@ module "loadbalancing" {
   source         = "./modules/loadbalancing"
   public_subnets = module.networking.public_subnets
   vpc_id         = module.vpc.vpc_id
-  web_sg         = module.networking.web_sg
-  app_sg         = module.networking.app_sg
+  alb_web_sg         = module.networking.alb_web_sg
+  alb_app_sg         = module.networking.alb_app_sg
 }
 
 module "compute" {
