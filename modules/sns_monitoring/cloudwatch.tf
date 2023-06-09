@@ -2,33 +2,33 @@
 resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_up" {
   alarm_name          = "web_cpu_alarm_up"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2"
+  evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "120"
+  period              = "60"
   statistic           = "Average"
-  threshold           = "70"
+  threshold           = "20"
   dimensions = {
     AutoScalingGroupName = var.web_asg_name
   }
-  alarm_description = "This metric monitor EC2 instance CPU utilization"
-  alarm_actions     = [var.web_asg_policy_up_arn]
+  alarm_description = "This metric monitors WEB EC2 CPU utilization exceeding 70%"
+  alarm_actions = [aws_sns_topic.cpu_alarm_topic.arn]
 }
 
 resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_down" {
   alarm_name          = "web_cpu_alarm_down"
   comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = "2"
+  evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "120"
+  period              = "60"
   statistic           = "Average"
-  threshold           = "30"
+  threshold           = "10"
   dimensions = {
     AutoScalingGroupName = var.web_asg_name
   }
-  alarm_description = "This metric monitor EC2 instance CPU utilization"
-  alarm_actions     = [var.web_asg_policy_down_arn]
+  alarm_description = "This metric monitors WEB EC2 CPU utilization falling below 30%"
+  alarm_actions = [aws_sns_topic.cpu_alarm_topic.arn]
 }
 
 
@@ -45,17 +45,17 @@ resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_down" {
 resource "aws_cloudwatch_metric_alarm" "app_cpu_alarm_up" {
   alarm_name          = "app_cpu_alarm_up"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2"
+  evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "120"
+  period              = "60"
   statistic           = "Average"
-  threshold           = "70"
+  threshold           = "20"
   dimensions = {
     AutoScalingGroupName = var.app_asg_name
   }
-  alarm_description = "This metric monitor EC2 instance CPU utilization"
-  alarm_actions     = [var.app_asg_policy_up_arn]
+  alarm_description = "This metric monitors APPLICATION EC2 CPU utilization exceeding 70%"
+  alarm_actions = [aws_sns_topic.cpu_alarm_topic.arn]
 }
 
 
@@ -63,15 +63,15 @@ resource "aws_cloudwatch_metric_alarm" "app_cpu_alarm_up" {
 resource "aws_cloudwatch_metric_alarm" "app_cpu_alarm_down" {
   alarm_name          = "app_cpu_alarm_down"
   comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = "2"
+  evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "120"
+  period              = "60"
   statistic           = "Average"
-  threshold           = "30"
+  threshold           = "10"
   dimensions = {
     AutoScalingGroupName = var.app_asg_name
   }
-  alarm_description = "This metric monitor EC2 instance CPU utilization"
-  alarm_actions     = [var.app_asg_policy_down_arn]
+  alarm_description = "This metric monitors APPLICATION EC2 CPU utilization fallaing below 30%"
+  alarm_actions = [aws_sns_topic.cpu_alarm_topic.arn]
 }
