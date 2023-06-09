@@ -63,7 +63,7 @@ module "compute" {
 }
 
 module "management" {
-  source                  = "./modules/management"
+  source                  = "./modules/sns_monitoring"
   web_asg_name            = module.compute.web_asg_name
   web_asg_policy_up_arn   = module.compute.web_asg_policy_up_arn
   web_asg_policy_down_arn = module.compute.web_asg_policy_down_arn
@@ -71,4 +71,6 @@ module "management" {
   app_asg_name            = module.compute.app_asg_name
   app_asg_policy_up_arn   = module.compute.app_asg_policy_up_arn
   app_asg_policy_down_arn = module.compute.app_asg_policy_down_arn
+
+  sns_email = var.sns_email
 }
