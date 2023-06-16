@@ -1,6 +1,12 @@
 # README
 
-This repository contains Terraform code to create resources in AWS for Autoscaling and Application Load Balancing of a three-tier app with a bastion host. The infrastructure will include a bastion host, a web server, an application server, and an RDS instance. The bastion host, web server, and application server will be deployed in a public subnet, while the RDS instance will be deployed in a private subnet.
+This repository contains Terraform code to create resources in AWS for Autoscaling and Application Load Balancing of a three-tier app with a bastion host. The infrastructure includes a bastion host, a web server, an application server, and an RDS instance. The bastion host, web server, and application server are deployed in a public subnet, while the RDS instance is deployed in a private subnet.
+
+Additionally, the setup includes SNS and CloudWatch to automatically add and remove instances in the autoscaling group based on scaling policies.
+
+## Architecture
+
+![Alt text](markdown/images/aws_architecture.jpg)
 
 ## Prerequisites
 
