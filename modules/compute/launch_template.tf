@@ -14,6 +14,7 @@ resource "aws_launch_template" "webserver_lt" {
 
   tags = {
     Name = var.settings.web_server.name
+    Environment = "dev"
   }
 
   depends_on = [
@@ -41,6 +42,7 @@ resource "aws_launch_template" "appserver_lt" {
 
   tags = {
     Name = var.settings.app_server.name
+    Environment = "dev"
   }
 
   depends_on = [
