@@ -12,7 +12,7 @@ resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_up" {
     AutoScalingGroupName = var.web_asg_name
   }
   alarm_description = "This metric monitors WEB EC2 CPU utilization exceeding 70%"
-  alarm_actions = [aws_sns_topic.cpu_alarm_topic.arn]
+  alarm_actions     = [aws_sns_topic.cpu_alarm_topic.arn]
 }
 
 resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_down" {
@@ -28,7 +28,7 @@ resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_down" {
     AutoScalingGroupName = var.web_asg_name
   }
   alarm_description = "This metric monitors WEB EC2 CPU utilization falling below 30%"
-  alarm_actions = [aws_sns_topic.cpu_alarm_topic.arn]
+  alarm_actions     = [aws_sns_topic.cpu_alarm_topic.arn]
 }
 
 
@@ -55,7 +55,7 @@ resource "aws_cloudwatch_metric_alarm" "app_cpu_alarm_up" {
     AutoScalingGroupName = var.app_asg_name
   }
   alarm_description = "This metric monitors APPLICATION EC2 CPU utilization exceeding 70%"
-  alarm_actions = [aws_sns_topic.cpu_alarm_topic.arn]
+  alarm_actions     = [aws_sns_topic.cpu_alarm_topic.arn]
 }
 
 
@@ -73,5 +73,5 @@ resource "aws_cloudwatch_metric_alarm" "app_cpu_alarm_down" {
     AutoScalingGroupName = var.app_asg_name
   }
   alarm_description = "This metric monitors APPLICATION EC2 CPU utilization fallaing below 30%"
-  alarm_actions = [aws_sns_topic.cpu_alarm_topic.arn]
+  alarm_actions     = [aws_sns_topic.cpu_alarm_topic.arn]
 }
