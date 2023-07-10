@@ -50,17 +50,14 @@ cd /home/ec2-user
 
 # Clone Website code
 echo "Cloning website code"
-su ec2-user -c "git clone https://github.com/monir-uz-zaman/aws_frontend.git"
+su ec2-user -c "git clone https://github.com/sundesz/blogpost"
 
-# cd /home/ec2-user/aws_frontend/src/lib
-# sed -i 's/localhost/${app-server-public-dns}/' getBaseRoute.js
+cd /home/ec2-user/blogpost/client
 
-cd /home/ec2-user/aws_frontend
 # Create .env file
 echo "Creating .env file for frontend"
-echo "NEXT_PUBLIC_BACKEND_URL=http://${app-server-public-dns}:8080" > .env
+echo "VITE_BACKEND_URL=http://${app_server_dns}:${app_server_port}" > .env
 
-cd /home/ec2-user/aws_frontend
 
 # Install dependencies
 echo "Installing node dependencies"
@@ -69,14 +66,3 @@ sudo npm i
 # Running backend in dev mode
 echo "Starting backend"
 sudo npm run dev
-
-
-# # Forward port 80 traffic to port 3000
-# echo "Forwarding 80 -> 3000"
-# iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 3000
-
-
-# # Install & use pm2 to run Node app in background
-# echo "Installing & starting pm2"
-# sudo npm install pm2@latest -g
-# pm2 start app.js

@@ -9,11 +9,12 @@ resource "aws_launch_template" "webserver_lt" {
   vpc_security_group_ids = [var.web_sg]
 
   user_data = base64encode(templatefile("${path.module}/userdata/web.sh", {
-    app-server-public-dns = var.app_alb_dns
+    app_server_dns  = var.app_alb_dns,
+    app_server_port = var.app_server_port
   }))
 
   tags = {
-    Name = var.settings.web_server.name
+    Name        = var.settings.web_server.name
     Environment = "dev"
   }
 
@@ -36,12 +37,15 @@ resource "aws_launch_template" "appserver_lt" {
   vpc_security_group_ids = [var.app_sg]
   user_data = base64encode(templatefile("${path.module}/userdata/application.sh", {
     db_host_name     = var.dbEndpoint,
+    db_name          = var.settings.database_instance.db_name,
     db_user_name     = var.settings.database_instance.username,
     db_user_password = var.settings.database_instance.password,
+    app_server_dns   = var.app_alb_dns,
+
   }))
 
   tags = {
-    Name = var.settings.app_server.name
+    Name        = var.settings.app_server.name
     Environment = "dev"
   }
 

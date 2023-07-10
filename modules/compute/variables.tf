@@ -15,3 +15,7 @@ variable "app_alb_tg" {}
 variable "app_alb_dns" {}
 
 variable "settings" {}
+
+variable "app_server_port" {
+  default = 8080
+}

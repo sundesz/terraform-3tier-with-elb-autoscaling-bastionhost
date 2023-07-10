@@ -67,10 +67,10 @@ resource "aws_security_group" "web_sg" {
     security_groups = [aws_security_group.bastion_host_sg.id]
   }
   ingress {
-    description = "Allow HTTP access"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
+    description     = "Allow HTTP access"
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
     security_groups = [aws_security_group.alb_web_sg.id]
   }
 
@@ -128,10 +128,10 @@ resource "aws_security_group" "app_sg" {
     security_groups = [aws_security_group.bastion_host_sg.id]
   }
   ingress {
-    description = "Allow 8080 port"
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
+    description     = "Allow 8080 port"
+    from_port       = 8080
+    to_port         = 8080
+    protocol        = "tcp"
     security_groups = [aws_security_group.alb_app_sg.id]
   }
 
@@ -156,9 +156,9 @@ resource "aws_security_group" "rds_sg" {
   vpc_id      = var.vpc_id
 
   ingress {
-    description     = "Allow mysql traffic from only the app_sg"
-    from_port       = 3306
-    to_port         = 3306
+    description     = "Allow postgres traffic from only the app_sg"
+    from_port       = 5432
+    to_port         = 5432
     protocol        = "tcp"
     security_groups = [aws_security_group.app_sg.id]
   }

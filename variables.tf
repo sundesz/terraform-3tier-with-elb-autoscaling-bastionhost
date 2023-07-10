@@ -66,12 +66,12 @@ variable "settings" {
       instance_type = "t3.micro"
     }
     database_instance = {
-      allocated_storage = 10
-      engine            = "mysql"
-      engine_version    = "8.0"
+      allocated_storage = 100
+      engine            = "postgres"
+      engine_version    = "14.8"
       instance_class    = "db.t3.micro"
       identifier        = "dbinstance"
-      db_name           = "employees"
+      db_name           = "blogpost"
       username          = "main"
       password          = "lab-password"
 
