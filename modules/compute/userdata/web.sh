@@ -50,10 +50,9 @@ cd /home/ec2-user
 
 # Clone Website code
 echo "Cloning website code"
-su ec2-user -c "git clone https://github.com/sundesz/blogpost-frontend"
+su ec2-user -c "git clone https://github.com/sundesz/blogpost"
 
-mv blogpost-frontend blogpost_frontend
-cd /home/ec2-user/blogpost_frontend
+cd /home/ec2-user/blogpost/client
 
 # Create .env file
 echo "Creating .env file for frontend"

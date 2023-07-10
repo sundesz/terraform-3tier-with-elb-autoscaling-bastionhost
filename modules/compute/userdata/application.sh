@@ -7,6 +7,8 @@ sudo yum install -y gcc-c++ make
 curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash -
 sudo yum install -y nodejs
 
+sudo npm install -g npm@9.8.0
+
 # Install Apache
 echo "Installing Apache"
 sudo yum -y install httpd
@@ -38,13 +40,13 @@ cd /home/ec2-user
 
 echo "${db_host_name}:5432:*:${db_user_name}:${db_user_password}" > .pgpass
 chmod 0600 .pgpass
+#psql --host=${db_host_name} --port=5432 --username=${db_user_name} --dbname=${db_name} --password=${db_user_password}
 
 # Clone Backend
 echo "Cloning backend"
-su ec2-user -c "git clone https://github.com/sundesz/blogpost-backend"
-mv blogpost-backend blogpost_backend
+su ec2-user -c "git clone https://github.com/sundesz/blogpost"
 
-cd /home/ec2-user/blogpost_backend
+cd /home/ec2-user/blogpost/server
 
 # Create env file for backend
 echo "Creating .env file for backend"
@@ -66,4 +68,4 @@ sudo npm i
 
 # Running backend in dev mode
 echo "Starting backend"
-sudo npm run dev
+npm run dev
